@@ -6,29 +6,27 @@
 using namespace std;
 
 //21.07.18
-
+//¼öÁ¤
 vector<int> solution(int n, vector<string> words) {
 	vector<int> answer;
 	unordered_map<string, int> umWordChain;
-	
+
+	// method 1
 	for (int i = 0; i < words.size(); i++)
 	{
 		if (i + 1 == words.size())
 		{
 			if (umWordChain.count(words[i]) == 1)
-			{
-				answer = { ((i + 1) % n) + 1 ,((i + 1) / n) + 1 };
-			}
+				answer = { ((i + 1) % n) + 1 ,((i + 1) / n) + 1};
 			else
-			{
 				answer = { 0,0 };
-			}
+
 			break;
 		}
 
 		if (umWordChain.count(words[i + 1]) == 1)
 		{
-			answer = { ((i + 1) % n) + 1 ,((i + 1) / n) + 1 };
+			answer = { ((i + 1) % n) + 1 ,((i + 1) / n) + 1};
 			break;
 		}
 
@@ -39,12 +37,39 @@ vector<int> solution(int n, vector<string> words) {
 		}
 		else
 		{
-			umWordChain[words[i]] = i / n;
+			umWordChain[words[i]] =1;
 		}
 
 	}
 
 	return answer;
+
+	// method 2
+	//umWordChain[words[0]] = 1;
+
+	//for (int i = 1; i < words.size(); i++)
+	//{
+	//	if (umWordChain.count(words[i]) == 1)
+	//	{
+	//		answer = { (i % n) + 1 ,(i / n) + 1 };
+	//		break;
+	//	}
+
+	//	if (words[i - 1][words[i - 1].size() - 1] != words[i][0])
+	//	{
+	//		answer = { (i % n) + 1 ,(i / n) + 1 };
+	//		break;
+	//	}
+	//	else
+	//	{
+	//		if (i == words.size() - 1)
+	//			return { 0,0 };
+
+	//		umWordChain[words[i]] = 1;
+	//	}
+	//}
+
+	//return answer;
 }
 
 int main()
