@@ -3,42 +3,41 @@
 #include <queue>
 using namespace std;
 
-int solution(vector<int> scoville, int K) {
-	int answer = 0;
+int moreSpicy(vector<int> scoville, int K) {
+	priority_queue<int, vector<int>, greater<int>> pq;
+
 	int count = 0;
-	int minScovile;
-	priority_queue<int, vector<int>, greater<int>> pq(scoville.begin(), scoville.end());
+	int minscoville = 0;
 
-	if (K == 0) return 0;
-	while (pq.top() < K)
+	for (const auto& iter : scoville)
 	{
-		minScovile = pq.top();
-		pq.pop();
-
-		if (!pq.empty())
+		if (iter < K)
 		{
-			minScovile = minScovile + pq.top() * 2;
-			pq.pop();
-
-			if (minScovile < K)
-			{
-				pq.push(minScovile);
-			}
-			answer++;
-
+			pq.push(iter);
 		}
-		else
-		{
-			return -1;
-		}
-
 	}
-	return answer;
+
+	while (!pq.empty())
+	{
+		minscoville = pq.top();
+		pq.pop();
+		if (minscoville >= K)
+			break;
+		if (pq.empty() == true)
+			return -1;
+
+		minscoville += (pq.top() * 2);
+		pq.pop();
+		pq.push(minscoville);
+		count++;
+	}
+
+	return count;
 }
 
 int main()
 {
-	cout << solution({ 1,2,3,9,10,12 }, 7);
-	cout << solution({ 2,3,7,10,15 }, 7);
+	cout << moreSpicy({ 1,2,3,9,10,12 }, 7);
+	//cout << moreSpicy({ 1,2,3,4,47 }, 100);
 	return 0;
 }
