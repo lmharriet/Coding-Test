@@ -159,5 +159,8 @@
     <ClCompile Include="lottery.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="NumberWords.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
