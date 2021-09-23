@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <map>
 #include <algorithm>
+#include <array>
 
 using namespace std;
 
@@ -86,7 +87,7 @@ using namespace std;
 //
 #pragma endregion
 
-#pragma region weekly Challenge 퍼즐 조각 채우기 (X)
+#pragma region weekly challenge_3 퍼즐 조각 채우기 (X)
 //
 //int solution(vector<vector<int>> game_board, vector<vector<int>> table) {
 //	int answer = -1;
@@ -121,82 +122,192 @@ using namespace std;
 
 #pragma endregion
 
-#pragma region weely Challenge_4 (직업군 추천하기)
+#pragma region weekly challenge_4 (직업군 추천하기)
 
+//
+//string solution(vector<string> table, vector<string> languages, vector<int> preference) {
+//	string answer = "";
+//
+//	unordered_map<string, int> pref_Languages;
+//	for (int i = 0; i < languages.size(); i++)
+//		pref_Languages[languages[i]] = preference[i];
+//	
+//	int categoryScore = -1; // 직업군 선호도 점수
+//	int findCount = 0;		// 각 string 에서 선호하는 언어를 찾아낸 횟수
+//	string Category = "";	// 가장 먼저 나오는 string은 카테고리가 됨 ex) SI, CONTENTS 
+//	unordered_map<string, int> category_Score;
+//	for (int i = 0; i < table.size(); i++)
+//	{
+//		for (int j = 0; j < table[i].length(); j++)
+//		{
+//			if (categoryScore == -1 && table[i][j] == ' ')
+//			{
+//				// 카테고리 분류하는 곳
+//				Category = move(answer);
+//				category_Score[Category] = 0;
+//				categoryScore = 5;	
+//
+//				continue;
+//			}
+//
+//			if (table[i][j] == ' ')
+//			{
+//				//공백까지 찾았으면 검사 ( JAVA, JAVASCRIPT 처럼 같은 단어가 무조건 들어있는 경우 때문에 공백까지 체크)
+//				if (pref_Languages.count(answer) > 0)
+//				{
+//					category_Score[Category] += (pref_Languages[answer] * categoryScore);
+//					answer = "";
+//					categoryScore--;
+//					findCount++;
+//
+//					if (findCount == pref_Languages.size())break;
+//				}
+//				else
+//				{
+//					answer = "";
+//					categoryScore--;
+//				}
+//				continue;
+//			}
+//
+//			answer += table[i][j];
+//
+//			if (j == table[i].length() - 1) // 마지막이면 공백 없으므로 여기서 검사
+//			{
+//				if (pref_Languages.count(answer) > 0)
+//				{
+//					category_Score[Category] += (pref_Languages[answer] * categoryScore);
+//				}
+//				answer = "";
+//			}
+//
+//		}//end of j
+//
+//		Category = "";
+//		answer = "";
+//		categoryScore = -1;
+//	}
+//
+//
+//	unordered_map<string, int>::iterator job = max_element(category_Score.begin(), category_Score.end(),
+//		[](const std::pair<string, int>& a, const std::pair<string, int>& b)
+//		{
+//			if (a.second == b.second)
+//				return  a.first > b.first;
+//			return a.second < b.second;
+//		});
+//
+//	answer = job->first; 
+//
+//	return answer;
+//}
 
-string solution(vector<string> table, vector<string> languages, vector<int> preference) {
-	string answer = "";
+#pragma endregion
 
-	unordered_map<string, int> pref_Languages;
-	for (int i = 0; i < languages.size(); i++)
-		pref_Languages[languages[i]] = preference[i];
-	
-	int categoryScore = -1; // 직업군 선호도 점수
-	int findCount = 0;		// 각 string 에서 선호하는 언어를 찾아낸 횟수
-	string Category = "";	// 가장 먼저 나오는 string은 카테고리가 됨 ex) SI, CONTENTS 
-	unordered_map<string, int> category_Score;
-	for (int i = 0; i < table.size(); i++)
+#pragma region weekly challenge_5 (모음사전)
+
+#pragma endregion
+
+#pragma region weekly challenge_6 (복서 정렬하기)
+
+class Boxer
+{
+public:
+	Boxer(int weight, int Order) :
+		myWeight(weight),
+		myOrder(Order),
+		winningOverWeight(0),
+		winningCount(0),
+		rate(0.0f) {};
+
+public:
+	void SetWinning(const int InWeight)
 	{
-		for (int j = 0; j < table[i].length(); j++)
-		{
-			if (categoryScore == -1 && table[i][j] == ' ')
-			{
-				// 카테고리 분류하는 곳
-				Category = move(answer);
-				category_Score[Category] = 0;
-				categoryScore = 5;	
+		winningCount++;
 
-				continue;
-			}
-
-			if (table[i][j] == ' ')
-			{
-				//공백까지 찾았으면 검사 ( JAVA, JAVASCRIPT 처럼 같은 단어가 무조건 들어있는 경우 때문에 공백까지 체크)
-				if (pref_Languages.count(answer) > 0)
-				{
-					category_Score[Category] += (pref_Languages[answer] * categoryScore);
-					answer = "";
-					categoryScore--;
-					findCount++;
-
-					if (findCount == pref_Languages.size())break;
-				}
-				else
-				{
-					answer = "";
-					categoryScore--;
-				}
-				continue;
-			}
-
-			answer += table[i][j];
-
-			if (j == table[i].length() - 1) // 마지막이면 공백 없으므로 여기서 검사
-			{
-				if (pref_Languages.count(answer) > 0)
-				{
-					category_Score[Category] += (pref_Languages[answer] * categoryScore);
-				}
-				answer = "";
-			}
-
-		}//end of j
-
-		Category = "";
-		answer = "";
-		categoryScore = -1;
+		if (myWeight < InWeight)
+			winningOverWeight++;
 	}
 
+	void SetRate(const double InRate) { rate = InRate; }
 
-	unordered_map<string, int>::iterator job = max_element(category_Score.begin(), category_Score.end(),
-		[](const std::pair<string, int>& a, const std::pair<string, int>& b)
+	const int GetWinningCount() { return winningCount; }
+	const int GetWinningOverWeightCount() { return winningOverWeight; }
+	const int GetMyOrder() { return myOrder; }
+	const int GetWeight() { return myWeight; }
+	const double GetRate() { return rate; }
+
+	static bool compareWinning(Boxer* A, Boxer* B)
+	{
+		if (A->GetRate() == B->GetRate())
 		{
-			if (a.second == b.second)
-				return  a.first > b.first;
-			return a.second < b.second;
-		});
+			if (A->GetWinningOverWeightCount() == B->GetWinningOverWeightCount())
+			{
+				if (A->GetWeight() == B->GetWeight())
+					return A->GetMyOrder() < B->GetMyOrder();
 
-	answer = job->first; 
+				return A->GetWeight() > B->GetWeight();
+			}
+			return A->GetWinningOverWeightCount() > B->GetWinningOverWeightCount();
+		}
+		return A->GetRate() > B->GetRate();
+	}
+
+private:
+	int myOrder;
+	int myWeight;
+	int winningOverWeight;
+	int winningCount;
+	double rate;
+};
+
+vector<int> solution(vector<int> weights, vector<string> head2head) {
+	vector<int> answer;
+	vector<Boxer*> Boxers;
+	for (int i = 0; i < weights.size(); i++)
+	{
+		Boxer* boxer = new Boxer(weights[i], i + 1);
+		Boxers.emplace_back(boxer);
+	}
+
+	int nonePlayCount = 0;
+	for (int i = 0; i < weights.size(); i++)
+	{
+		for (int j = 0; j < head2head[i].size(); j++)
+		{
+			if (head2head[i][j] == 'N')
+			{
+				nonePlayCount++;
+				continue;
+			}
+
+			if (j <= i) continue;
+
+			if (head2head[i][j] == 'W')
+			{
+				Boxers[i]->SetWinning(weights[j]);
+			}
+			else if (head2head[i][j] == 'L')
+			{
+				Boxers[j]->SetWinning(weights[i]);
+			}
+		}
+
+		if (nonePlayCount < weights.size())
+		{
+			Boxers[i]->SetRate(static_cast<float>(Boxers[i]->GetWinningCount()) / static_cast<float>(weights.size() - nonePlayCount));
+		}
+
+		nonePlayCount = 0;
+	}
+
+	sort(Boxers.begin(), Boxers.end(), Boxer::compareWinning);
+
+	for (Boxer* boxer : Boxers)
+	{
+		cout << boxer->GetMyOrder() << " ";
+		answer.emplace_back(boxer->GetMyOrder());
+	}
 
 	return answer;
 }
@@ -204,9 +315,9 @@ string solution(vector<string> table, vector<string> languages, vector<int> pref
 #pragma endregion
 
 
-
 int main()
 {
+
 	//weekly challenge_1(부족한 금액 계산하기)
 	//cout << solution(3, 20, 4);
 
@@ -219,7 +330,9 @@ int main()
 	//cout << solution({ {1,1,0,0,1,0},{0,0,1,0,1,0},{0,1,1,0,0,1},{1,1,0,1,1,1},{1,0,0,0,1,0},{0,1,1,1,0,0} },
 	//	{ {1,0,0,1,1,0},{1,0,1,0,1,0}, {0,1,1,0,1,1},{0,0,1,0,0,0},{1,1,0,1,1,0}, {0,1,0,0,0,0} });
 
-	/*cout << solution({
+	/*
+	//weekly challenge_3(직업군 추천하기) //not yet
+		cout << solution({
 		"SI JAVA JAVASCRIPT SQL PYTHON C#",
 		"CONTENTS JAVASCRIPT JAVA PYTHON SQL C++",
 		"HARDWARE C C++ PYTHON JAVA JAVASCRIPT",
@@ -228,14 +341,31 @@ int main()
 		{ "PYTHON", "C++", "SQL" },
 		{ 7,5,5 });*/
 
-	cout << solution({
+	/*cout << solution({
 	"SI JAVA JAVASCRIPT SQL PYTHON C#",
 	"CONTENTS JAVASCRIPT JAVA PYTHON SQL C++",
 	"HARDWARE C C++ PYTHON JAVA JAVASCRIPT",
 	"PORTAL JAVA JAVASCRIPT PYTHON KOTLIN PHP",
 	"GAME C++ C# JAVASCRIPT C JAVA" },
 		{ "JAVA", "JAVASCRIPT" },
-		{ 7,5 });
+		{ 7,5 });*/
+
+
+	/*
+	//weekly challenge_5 (모음사전)
+	*/
+
+	
+	//weekly challenge_6(복서 정렬)
+
+	solution({ 50,82,75,120 }, { "NLWL","WNLL","LWNW","WWLN" });
+	cout << endl;
+	solution({ 145,92,86 }, { "NLW","WNL","LWN" });
+	std::cout << endl;
+	solution({ 60,70,60 }, { "NNN","NNN","NNN" });
+	cout << endl;
+	
+
 
 	return 0;
 }
