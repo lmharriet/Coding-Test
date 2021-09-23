@@ -181,6 +181,7 @@
     <ClCompile Include="strSort.cpp" />
     <ClCompile Include="sum2Numbers.cpp" />
     <ClCompile Include="sumBetweenNum1AndrNum2.cpp" />
+    <ClCompile Include="sumNoneExistNums.cpp" />
     <ClCompile Include="sumPositionalNumber.cpp" />
     <ClCompile Include="test1.cpp" />
     <ClCompile Include="uniform.cpp" />
