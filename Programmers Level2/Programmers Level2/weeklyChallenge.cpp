@@ -261,7 +261,7 @@ private:
 	double rate;
 };
 
-vector<int> solution(vector<int> weights, vector<string> head2head) {
+vector<int> SortBoxers (vector<int> weights, vector<string> head2head) {
 	vector<int> answer;
 	vector<Boxer*> Boxers;
 	for (int i = 0; i < weights.size(); i++)
@@ -356,6 +356,7 @@ int main()
 	*/
 
 	
+	/*
 	//weekly challenge_6(복서 정렬)
 
 	solution({ 50,82,75,120 }, { "NLWL","WNLL","LWNW","WWLN" });
@@ -365,7 +366,7 @@ int main()
 	solution({ 60,70,60 }, { "NNN","NNN","NNN" });
 	cout << endl;
 	
-
+	*/
 
 	return 0;
 }
