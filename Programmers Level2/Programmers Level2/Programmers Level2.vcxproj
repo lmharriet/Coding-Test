@@ -149,6 +149,7 @@
     <ClCompile Include="LCMs.cpp" />
     <ClCompile Include="lifeBoat.cpp" />
     <ClCompile Include="makeMinimum.cpp" />
+    <ClCompile Include="MaxAndMin.cpp" />
     <ClCompile Include="moreSpicy.cpp" />
     <ClCompile Include="phoneBook.cpp" />
     <ClCompile Include="print.cpp" />
